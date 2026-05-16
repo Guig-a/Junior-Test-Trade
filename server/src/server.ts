@@ -1,5 +1,5 @@
 import cors from "cors";
-import express, { type Express } from "express";
+import express, { type Express, type NextFunction, type Request, type Response } from "express";
 import helmet from "helmet";
 import { pino } from "pino";
 import swaggerUi from "swagger-ui-express";
@@ -28,10 +28,12 @@ app.use(rateLimiter);
 app.use(requestLogger);
 
 // Routes
-app.get("/openapi.json", (_req, res) => res.json(getOpenApiDocument()));
+app.get("/openapi.json", (_req: Request, res: Response) => {
+	res.json(getOpenApiDocument());
+});
 app.use(
 	"/docs",
-	(_req, res, next) => {
+	(_req: Request, res: Response, next: NextFunction) => {
 		res.removeHeader("Content-Security-Policy");
 		next();
 	},

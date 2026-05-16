@@ -42,6 +42,20 @@ Adds OpenAPI generation with `@asteasolutions/zod-to-openapi`, exposes the raw s
 
 Customizes the API rate limiter to return `ServiceResponse` JSON for `429 Too Many Requests` and makes the client response parser resilient to unexpected non-JSON responses. Also documents the deliberate choice not to round floating-point Newton-Raphson results in `NOTES.md`.
 
+### fix(server): corrige tipagem das rotas de documentação
+
+Adjusts the Express handlers for `GET /openapi.json` and `/docs` so they do not return `Response` objects from callbacks and explicitly type `Request`, `Response`, and `NextFunction`. This removes TypeScript diagnostics without changing runtime behavior.
+
+### docs: adiciona evidências visuais da implementação
+
+Adds screenshots under `docs/` to document the implemented UI, Swagger/OpenAPI documentation, and the passing server test suite.
+
+![Application UI](docs/UI.png)
+
+![Swagger documentation](docs/swagger.png)
+
+![Passing tests](docs/testes.png)
+
 ---
 
 ## Stack (fixed)
