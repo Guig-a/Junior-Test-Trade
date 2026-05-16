@@ -38,6 +38,10 @@ Documents implementation assumptions, the `worker_threads` approach for `/square
 
 Adds OpenAPI generation with `@asteasolutions/zod-to-openapi`, exposes the raw spec at `GET /openapi.json`, and serves Swagger UI at `GET /docs`.
 
+### fix(app): trata respostas de rate limit corretamente
+
+Customizes the API rate limiter to return `ServiceResponse` JSON for `429 Too Many Requests` and makes the client response parser resilient to unexpected non-JSON responses. Also documents the deliberate choice not to round floating-point Newton-Raphson results in `NOTES.md`.
+
 ---
 
 ## Stack (fixed)
