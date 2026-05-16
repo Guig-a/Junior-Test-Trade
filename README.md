@@ -30,6 +30,10 @@ Adds Supertest coverage for real Express routes: valid and invalid `POST /square
 
 Replaces the Vite placeholder with a typed React UI: number input, submit/loading/error states, latest result, cursor-paginated history table, and `Clear history` wired to `DELETE /square-root/history`. API DTOs are imported from `@shared/types`.
 
+### docs: adiciona NOTES.md com decisões técnicas
+
+Documents implementation assumptions, the `worker_threads` approach for `/square-root/calculate`, cursor pagination format, Prisma/test setup, and improvements that would be prioritized with more time.
+
 ---
 
 ## Stack (fixed)
@@ -174,6 +178,8 @@ cd client && pnpm lint && pnpm build
 - Passing `pnpm test` / `pnpm build` / `pnpm lint` for both `server` and `client` in your branch.
 - Brief **`NOTES.md`**: assumptions, async approach for `/calculate`, pagination cursor format, anything you’d improve with more time.
 - **Submission:** zip or link to a **private git fork/branch** with commit history.
+
+Implementation details and tradeoffs for this fork are documented in [`NOTES.md`](NOTES.md).
 
 ---
 
