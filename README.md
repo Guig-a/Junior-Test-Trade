@@ -26,6 +26,10 @@ Adds `GET /square-root/history?limit=&cursor=` returning `SqrtHistoryResponse` i
 
 Adds Supertest coverage for real Express routes: valid and invalid `POST /square-root/calculate`, plus the `GET`/`DELETE` history flow. The server test script applies Prisma migrations to the test SQLite database before running Vitest.
 
+### feat(client): UI de cálculo, histórico paginado e limpar histórico
+
+Replaces the Vite placeholder with a typed React UI: number input, submit/loading/error states, latest result, cursor-paginated history table, and `Clear history` wired to `DELETE /square-root/history`. API DTOs are imported from `@shared/types`.
+
 ---
 
 ## Stack (fixed)
@@ -153,6 +157,8 @@ pnpm dev
 ```
 
 Open the URL Vite prints (usually `http://localhost:5173`). Ensure the API port matches the proxy / `VITE_API_URL`.
+
+During local development, the client calls relative `/square-root/...` endpoints and Vite proxies them to the Express API (`http://localhost:8080` by default, configurable via `VITE_DEV_PROXY_TARGET`).
 
 **Quality checks:**
 

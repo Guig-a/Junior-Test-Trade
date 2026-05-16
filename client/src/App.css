@@ -1,17 +1,173 @@
 .app {
-	max-width: 40rem;
-	margin: 2rem auto;
-	padding: 0 1rem;
+	max-width: 64rem;
+	margin: 0 auto;
+	padding: 3rem 1rem;
 	font-family: system-ui, sans-serif;
 }
 
+.hero {
+	margin-bottom: 2rem;
+}
+
+.hero h1 {
+	margin: 0;
+	font-size: clamp(2rem, 5vw, 3.5rem);
+	line-height: 1;
+}
+
+.eyebrow {
+	margin: 0 0 0.75rem;
+	color: #2563eb;
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
 .hint {
+	max-width: 44rem;
 	color: #444;
 	line-height: 1.5;
 }
 
-code {
-	background: #f2f2f2;
-	padding: 0.1rem 0.35rem;
-	border-radius: 0.25rem;
+.panel {
+	margin-top: 1rem;
+	padding: 1.5rem;
+	border: 1px solid #e5e7eb;
+	border-radius: 1rem;
+	background: #fff;
+	box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.06);
+}
+
+.panel h2 {
+	margin: 0 0 1rem;
+}
+
+.calculator-form {
+	display: grid;
+	gap: 0.5rem;
+}
+
+.calculator-form label {
+	font-weight: 700;
+}
+
+.input-row {
+	display: flex;
+	gap: 0.75rem;
+}
+
+input {
+	flex: 1;
+	min-width: 0;
+	padding: 0.75rem 0.9rem;
+	border: 1px solid #cbd5e1;
+	border-radius: 0.75rem;
+	font: inherit;
+}
+
+button {
+	padding: 0.75rem 1rem;
+	border: 0;
+	border-radius: 0.75rem;
+	background: #2563eb;
+	color: #fff;
+	cursor: pointer;
+	font: inherit;
+	font-weight: 700;
+}
+
+button:disabled {
+	cursor: not-allowed;
+	opacity: 0.55;
+}
+
+.secondary {
+	border: 1px solid #cbd5e1;
+	background: #fff;
+	color: #0f172a;
+}
+
+.danger {
+	border-color: #fecaca;
+	color: #b91c1c;
+}
+
+.error {
+	margin: 1rem 0 0;
+	padding: 0.75rem 1rem;
+	border: 1px solid #fecaca;
+	border-radius: 0.75rem;
+	background: #fef2f2;
+	color: #b91c1c;
+}
+
+.result {
+	display: grid;
+	gap: 0.25rem;
+	margin-top: 1rem;
+	padding: 1rem;
+	border-radius: 0.75rem;
+	background: #eff6ff;
+	color: #1e3a8a;
+}
+
+.result span,
+.muted {
+	color: #64748b;
+}
+
+.result strong {
+	font-size: 1.25rem;
+}
+
+.section-header,
+.pagination {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.section-header h2,
+.section-header p {
+	margin: 0;
+}
+
+.table-wrap {
+	overflow-x: auto;
+	margin-top: 1rem;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	padding: 0.85rem 0.75rem;
+	border-bottom: 1px solid #e5e7eb;
+	text-align: left;
+	white-space: nowrap;
+}
+
+th {
+	color: #475569;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+}
+
+.pagination {
+	justify-content: flex-end;
+	margin-top: 1rem;
+}
+
+@media (max-width: 640px) {
+	.input-row,
+	.section-header,
+	.pagination {
+		align-items: stretch;
+		flex-direction: column;
+	}
 }
