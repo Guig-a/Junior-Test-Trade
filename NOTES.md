@@ -23,9 +23,12 @@ The client treats `nextCursor` as an opaque string and passes it back unchanged.
 
 This fork uses Prisma 7 with SQLite through the `@prisma/adapter-libsql` adapter. The server test script runs `prisma migrate deploy` before Vitest so Supertest integration tests hit a real migrated SQLite database.
 
+## API documentation
+
+OpenAPI is generated in `server/src/openapi/openapi-document.ts` with `@asteasolutions/zod-to-openapi`. The Express app exposes the raw spec at `GET /openapi.json` and Swagger UI at `GET /docs`.
+
 ## Improvements with more time
 
-- Add OpenAPI + Swagger UI at `/docs` from the existing Zod schemas.
 - Add an in-memory or distributed cache for repeated inputs, with clear invalidation behavior.
 - Add client-side integration/e2e coverage for form submission, pagination, and clear-history flows.
 - Improve pagination UX with page indicators and disabled/loading states per action.

@@ -34,6 +34,10 @@ Replaces the Vite placeholder with a typed React UI: number input, submit/loadin
 
 Documents implementation assumptions, the `worker_threads` approach for `/square-root/calculate`, cursor pagination format, Prisma/test setup, and improvements that would be prioritized with more time.
 
+### docs(api): OpenAPI e Swagger UI em /docs
+
+Adds OpenAPI generation with `@asteasolutions/zod-to-openapi`, exposes the raw spec at `GET /openapi.json`, and serves Swagger UI at `GET /docs`.
+
 ---
 
 ## Stack (fixed)
@@ -150,6 +154,13 @@ curl -X DELETE http://localhost:8080/square-root/history
 ```
 
 `cursor` is the last `Calculation.id` returned by the previous page, serialized as a string in `nextCursor`. The history response is a `ServiceResponse` whose `responseObject` matches `SqrtHistoryResponse` from `shared/types.ts`.
+
+**API documentation:**
+
+```bash
+open http://localhost:8080/docs
+curl http://localhost:8080/openapi.json
+```
 
 **UI** (second terminal):
 
