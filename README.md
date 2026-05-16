@@ -14,6 +14,10 @@ Implements `NewtonRaphsonAlgorithm.approximateGuess()` with the Newton-Raphson s
 
 Adds Prisma 7 with SQLite under `server/`, including `prisma.config.ts`, `server/prisma/schema.prisma`, the initial `Calculation` migration, `DATABASE_URL` configuration, and a reusable Prisma Client module at `server/src/common/database/prisma.ts`.
 
+### feat(api): POST /square-root/calculate com worker e persistência
+
+Adds `POST /square-root/calculate`, validates `{ input: number }` with Zod (finite numbers only), calculates through `SqrtCalculator` + `NewtonRaphsonAlgorithm` in a native Node `worker_threads` worker, persists successful calculations with Prisma, and returns the existing `ServiceResponse` shape.
+
 ---
 
 ## Stack (fixed)
@@ -110,6 +114,16 @@ pnpm start:dev
 ```
 
 The Prisma schema lives in `server/prisma/schema.prisma`. Local SQLite data is configured by `DATABASE_URL` (default in `.env.template`: `file:./prisma/dev.sqlite`) and generated database files are ignored by git.
+
+**Calculate endpoint:**
+
+```bash
+curl -X POST http://localhost:8080/square-root/calculate \
+  -H "Content-Type: application/json" \
+  -d "{\"input\": 16}"
+```
+
+The response is a `ServiceResponse` whose `responseObject` matches `SqrtCalculationResponse` from `shared/types.ts`.
 
 **UI** (second terminal):
 
