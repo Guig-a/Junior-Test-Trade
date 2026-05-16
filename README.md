@@ -18,6 +18,10 @@ Adds Prisma 7 with SQLite under `server/`, including `prisma.config.ts`, `server
 
 Adds `POST /square-root/calculate`, validates `{ input: number }` with Zod (finite numbers only), calculates through `SqrtCalculator` + `NewtonRaphsonAlgorithm` in a native Node `worker_threads` worker, persists successful calculations with Prisma, and returns the existing `ServiceResponse` shape.
 
+### feat(api): GET/DELETE histórico com paginação por cursor
+
+Adds `GET /square-root/history?limit=&cursor=` returning `SqrtHistoryResponse` inside `ServiceResponse.responseObject`, using the numeric `Calculation.id` as the cursor string, plus `DELETE /square-root/history` to clear all persisted calculations.
+
 ---
 
 ## Stack (fixed)
@@ -124,6 +128,16 @@ curl -X POST http://localhost:8080/square-root/calculate \
 ```
 
 The response is a `ServiceResponse` whose `responseObject` matches `SqrtCalculationResponse` from `shared/types.ts`.
+
+**History endpoints:**
+
+```bash
+curl "http://localhost:8080/square-root/history?limit=10"
+curl "http://localhost:8080/square-root/history?limit=10&cursor=<nextCursor>"
+curl -X DELETE http://localhost:8080/square-root/history
+```
+
+`cursor` is the last `Calculation.id` returned by the previous page, serialized as a string in `nextCursor`. The history response is a `ServiceResponse` whose `responseObject` matches `SqrtHistoryResponse` from `shared/types.ts`.
 
 **UI** (second terminal):
 
