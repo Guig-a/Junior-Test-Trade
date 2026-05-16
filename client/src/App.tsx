@@ -12,6 +12,12 @@ type ServiceResponse<T> = {
 const historyLimit = 10;
 
 async function parseServiceResponse<T>(response: Response): Promise<T> {
+	const contentType = response.headers.get("content-type") ?? "";
+	if (!contentType.includes("application/json")) {
+		const text = await response.text();
+		throw new Error(text || response.statusText || "Request failed");
+	}
+
 	const body = (await response.json()) as ServiceResponse<T>;
 
 	if (!response.ok || !body.success) {

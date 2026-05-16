@@ -32,7 +32,10 @@ const calculationServiceResponseSchema = registry.register(
 	createServiceResponseSchema(calculationSchema),
 );
 
-const historyServiceResponseSchema = registry.register("SqrtHistoryServiceResponse", createServiceResponseSchema(historySchema));
+const historyServiceResponseSchema = registry.register(
+	"SqrtHistoryServiceResponse",
+	createServiceResponseSchema(historySchema),
+);
 
 const clearHistoryServiceResponseSchema = registry.register(
 	"ClearHistoryServiceResponse",

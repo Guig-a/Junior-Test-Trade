@@ -24,32 +24,28 @@ function mapCalculationToResponse(calculation: {
 	};
 }
 
-squareRootRouter.post(
-	"/calculate",
-	validateRequest(calculateRequestSchema),
-	async (req: Request, res: Response) => {
-		const { input } = req.body as SqrtCalculationRequest;
+squareRootRouter.post("/calculate", validateRequest(calculateRequestSchema), async (req: Request, res: Response) => {
+	const { input } = req.body as SqrtCalculationRequest;
 
-		try {
-			const result = await calculateSqrtInWorker(input);
-			const calculation = await prisma.calculation.create({
-				data: {
-					input,
-					result,
-				},
-			});
-			const responseObject = mapCalculationToResponse(calculation);
+	try {
+		const result = await calculateSqrtInWorker(input);
+		const calculation = await prisma.calculation.create({
+			data: {
+				input,
+				result,
+			},
+		});
+		const responseObject = mapCalculationToResponse(calculation);
 
-			return handleServiceResponse(
-				ServiceResponse.success("Square root calculated successfully", responseObject, StatusCodes.OK),
-				res,
-			);
-		} catch (error) {
-			const message = error instanceof Error ? error.message : "Failed to calculate square root";
-			return handleServiceResponse(ServiceResponse.failure(message, null, StatusCodes.INTERNAL_SERVER_ERROR), res);
-		}
-	},
-);
+		return handleServiceResponse(
+			ServiceResponse.success("Square root calculated successfully", responseObject, StatusCodes.OK),
+			res,
+		);
+	} catch (error) {
+		const message = error instanceof Error ? error.message : "Failed to calculate square root";
+		return handleServiceResponse(ServiceResponse.failure(message, null, StatusCodes.INTERNAL_SERVER_ERROR), res);
+	}
+});
 
 squareRootRouter.get("/history", validateRequest(historyRequestSchema), async (req: Request, res: Response) => {
 	const { limit, cursor } = historyRequestSchema.parse({ query: req.query }).query;
