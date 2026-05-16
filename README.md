@@ -22,6 +22,10 @@ Adds `POST /square-root/calculate`, validates `{ input: number }` with Zod (fini
 
 Adds `GET /square-root/history?limit=&cursor=` returning `SqrtHistoryResponse` inside `ServiceResponse.responseObject`, using the numeric `Calculation.id` as the cursor string, plus `DELETE /square-root/history` to clear all persisted calculations.
 
+### test(api): adiciona testes de integração HTTP com supertest
+
+Adds Supertest coverage for real Express routes: valid and invalid `POST /square-root/calculate`, plus the `GET`/`DELETE` history flow. The server test script applies Prisma migrations to the test SQLite database before running Vitest.
+
 ---
 
 ## Stack (fixed)

@@ -16,8 +16,8 @@
 		"format": "biome format --write",
 		"prisma:generate": "prisma generate",
 		"prisma:migrate": "prisma migrate dev",
-		"test": "vitest run",
-		"test:cov": "vitest run --coverage",
+		"test": "prisma migrate deploy && vitest run",
+		"test:cov": "prisma migrate deploy && vitest run --coverage",
 		"check": "pnpm lint && pnpm format && pnpm build && pnpm test"
 	},
 	"dependencies": {
