@@ -24,6 +24,9 @@ server/.env
 server/prisma/*.db
 server/prisma/*.db-journal
 server/prisma/*.db-*
+server/prisma/*.sqlite
+server/prisma/*.sqlite-journal
+server/prisma/*.sqlite-*
 
 # Editor directories and files
 !.vscode/extensions.json

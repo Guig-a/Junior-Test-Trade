@@ -4,6 +4,16 @@ Build a small **fullstack** product: users submit a number, the API returns its 
 
 **CI note:** On a clean checkout, `pnpm test` in `server/` is expected to **fail** until you implement `NewtonRaphsonAlgorithm` (see Required tasks). Getting the suite green is part of the exercise.
 
+## Candidate Implementation
+
+### feat(square-root): implementa Newton-Raphson approximateGuess
+
+Implements `NewtonRaphsonAlgorithm.approximateGuess()` with the Newton-Raphson step (`x = 0.5 * (x + number / x)`) and an initial guess that avoids division by zero on the first iteration. The existing domain specs pass with this change.
+
+### chore(db): adiciona Prisma + SQLite e model Calculation
+
+Adds Prisma 7 with SQLite under `server/`, including `prisma.config.ts`, `server/prisma/schema.prisma`, the initial `Calculation` migration, `DATABASE_URL` configuration, and a reusable Prisma Client module at `server/src/common/database/prisma.ts`.
+
 ---
 
 ## Stack (fixed)
@@ -94,8 +104,12 @@ No authentication required.
 cd server
 cp .env.template .env   # adjust PORT if needed (template uses 8080)
 pnpm install
+pnpm prisma:migrate     # creates/applies SQLite migrations locally
+pnpm prisma:generate    # generates Prisma Client
 pnpm start:dev
 ```
+
+The Prisma schema lives in `server/prisma/schema.prisma`. Local SQLite data is configured by `DATABASE_URL` (default in `.env.template`: `file:./prisma/dev.sqlite`) and generated database files are ignored by git.
 
 **UI** (second terminal):
 

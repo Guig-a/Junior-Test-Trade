@@ -1,0 +1,7 @@
+-- CreateTable
+CREATE TABLE "Calculation" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "input" REAL NOT NULL,
+    "result" REAL NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
